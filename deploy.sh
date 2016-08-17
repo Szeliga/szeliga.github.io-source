@@ -3,7 +3,7 @@
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Build the project.
-hugo # if using a theme, replace by `hugo -t <yourtheme>`
+hugo -d dist # if using a theme, replace by `hugo -t <yourtheme>`
 
 # Go To Public folder
 cd dist
@@ -11,7 +11,7 @@ cd dist
 git add -A
 
 # Commit changes.
-msg="rebuilding site `date`"
+msg="rebuilding site `date '+%Y-%m-%d %H:%M:%S'`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
