@@ -1,0 +1,39 @@
+baseurl = "https://szeliga.github.io/"
+languageCode = "en-us"
+title = "After Eight Coding"
+description = "A journal about writing a ray tracer in Go"
+theme = "hugo-type-theme"
+paginate = 10
+PaginatePath = "/"
+pygmentsuseclasses = true
+PygmentsCodeFences= true
+disqusShortname = "goray-devblog"
+googleAnalytics = "UA-57222446-2"
+
+[taxonomies]
+category = "categories"
+
+[author]
+  name = "Szymon Szeliga"
+
+[params]
+  author = "Szymon Szeliga"
+	name = "GoRay devblog"
+  gravatar = "szeliga.szymon@gmail.com"
+	description = "A development journal about writting a ray tracer in Go"
+	copyright = "by Szymon Szeliga - Powered by [Hugo](//gohugo.io) - Theme: [Type](//github.com/digitalcraftsman/hugo-type-theme)"
+  pageNotFoundTitle = "Page not found"
+	pageNotFoundSubtitle = "Sorry, but the requested page wasn’t <br> found on the server."
+  newer = "Next"
+  older = "Previous"
+
+[permalinks]
+	post = "/:year/:month/:day/:slug"
+
+[params.social]
+	# Insert your accout name and the icon will be shown in the right menu
+	rss = true
+	homepage = true
+	email = "szeliga.szymon@gmail.com"
+	github = "Szeliga"
+	linkedin = "https://www.linkedin.com/in/szymonszeliga"
