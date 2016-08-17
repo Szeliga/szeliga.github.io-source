@@ -1,9 +1,11 @@
 ---
 date: 2016-04-20
-title: Getting started
-description: First post in the series about GoRay development
+title: Getting started with Golang
+description: First post in the series about implementing a Raytracer in Golang
+slug: getting-started-with-golang
 categories:
-  - introduction
+  - golang
+  - raytracer
 type: post
 ---
 

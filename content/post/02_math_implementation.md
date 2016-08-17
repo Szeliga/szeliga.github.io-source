@@ -5,7 +5,7 @@ description: Revising and implementing the vector math hiding behind the core id
 slug: vector-operations
 categories:
   - golang
-  - raytracing
+  - raytracer
 type: post
 ---
 
