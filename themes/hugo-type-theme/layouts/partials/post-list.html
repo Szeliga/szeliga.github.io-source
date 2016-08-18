@@ -3,11 +3,11 @@
 	{{ range $paginator.Pages }}
 	<div class="post-teaser">
 		<header>
-			<h1>
-			<a class="post-link" href="{{ .Permalink }}">
-				{{ .Title }}
-			</a>
-			</h1>
+			<h2>
+  			<a class="post-link" href="{{ .Permalink }}">
+  				{{ .Title }}
+  			</a>
+      </h2>
 			<p class="meta">
 				{{ .Date.Format "January 1, 2006" }}
         &middot; {{ .ReadingTime }} {{ .Site.Data.l10n.readingTime }}
