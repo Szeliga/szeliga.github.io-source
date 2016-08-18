@@ -22,15 +22,16 @@ First thing I need to do, is define how vectors will be represented in the code.
 So let's define a struct that will represent a 3 dimensional vector with coordinates `(x, y, z)`:
 
 ``` go
-package math
+package core
 
 import "math"
 
 // Vector - struct holding X Y Z values of a 3D vector
 type Vector struct {
-	X, Y, Z float64
+  X, Y, Z float64
 }
 ```
+
 _Note that the struct's name and all of the coordinates are written in capital letters. That's because in Go, only stuff that's written in capital letters gets exported when your package is imported somewhere. Lowercase functions, structs, etc. are available only inside the package. If you want some more information about this, visit {{< url-link "this link" "https://www.goinggo.net/2014/03/exportedunexported-identifiers-in-go.html" >}}_
 
 ## Operations on vectors
@@ -40,25 +41,27 @@ Methods are plain Go functions, but they are defined with a receiver that comes 
 
 We can define a method on a receiver in two ways:
 
-1. Pointer receiver
-``` go
-func (a *Vector) Add(b Vector) Vector {
-	a.X += b.X
-	a.Y += b.Y
-	a.Z += b.Z
-	return a
-}
-```
+* Pointer receiver
 
-2. Value receiver
-``` go
-func (a Vector) Add(b Vector) Vector {
-	a.X += b.X
-	a.Y += b.Y
-	a.Z += b.Z
-	return a
-}
-```
+  ``` go
+  func (a *Vector) Add(b Vector) Vector {
+    a.X += b.X
+    a.Y += b.Y
+    a.Z += b.Z
+    return a
+  }
+  ```
+
+* Value receiver
+
+  ``` go
+  func (a Vector) Add(b Vector) Vector {
+    a.X += b.X
+    a.Y += b.Y
+    a.Z += b.Z
+    return a
+  }
+  ```
 
 The core difference between these two is that, the one that is defined on a pointer receiver, will mutate the actual object it was called on. Analogically a method called on a value receiver will not mutate the receiver, because it will operate on a copy of the original receiver.
 
@@ -73,16 +76,16 @@ This operation is achieved by adding the corresponding coefficients of two vecto
 
 ``` go
 func (a Vector) Add(b Vector) Vector {
-	return Vector{
-		X: a.X + b.X,
-		Y: a.Y + b.Y,
-		Z: a.Z + b.Z,
-	}
+  return Vector{
+    X: a.X + b.X,
+    Y: a.Y + b.Y,
+    Z: a.Z + b.Z,
+  }
 }
 
 func TestAdd(t *testing.T) {
-	result := Vector{1., 1., 1.}.Add(Vector{2., 2., 2.})
-	assert.Equal(t, Vector{3., 3., 3.}, result, "should add correctly")
+  result := Vector{1., 1., 1.}.Add(Vector{2., 2., 2.})
+  assert.Equal(t, Vector{3., 3., 3.}, result, "should add correctly")
 }
 ```
 
@@ -92,16 +95,16 @@ Analogically to addition of two vectors, we subtract the corresponding coefficie
 
 ``` go
 func (a Vector) Sub(b Vector) Vector {
-	return Vector{
-		X: a.X - b.X,
-		Y: a.Y - b.Y,
-		Z: a.Z - b.Z,
-	}
+  return Vector{
+    X: a.X - b.X,
+    Y: a.Y - b.Y,
+    Z: a.Z - b.Z,
+  }
 }
 
 func TestSub(t *testing.T) {
-	result := Vector{3., 3., 3.}.Sub(Vector{1., 1., 1.})
-	assert.Equal(t, Vector{2., 2., 2.}, result, "should subtract correcly")
+  result := Vector{3., 3., 3.}.Sub(Vector{1., 1., 1.})
+  assert.Equal(t, Vector{2., 2., 2.}, result, "should subtract correcly")
 }
 ```
 
@@ -111,16 +114,17 @@ Multiplying by a scalar can be interpreted as scaling the vector (modifying it's
 
 ``` go
 func (a Vector) MultiplyByScalar(s float64) Vector {
-	return Vector{
-		X: a.X * s,
-		Y: a.Y * s,
-		Z: a.Z * s,
-	}
+  return Vector{
+    X: a.X * s,
+    Y: a.Y * s,
+    Z: a.Z * s,
+  }
 }
 
 func TestMultiplyByScalar(t *testing.T) {
-	result := Vector{3., 3., 3.}.MultiplyByScalar(2.)
-	assert.Equal(t, Vector{6., 6., 6.}, result, "should multiply each component by given scalar")
+  result := Vector{3., 3., 3.}.MultiplyByScalar(2.)
+  assert.Equal(t, Vector{6., 6., 6.}, result,
+    "should multiply each component by given scalar")
 }
 ```
 
@@ -150,17 +154,17 @@ With the theoretical stuff out of the way, let's proceed with the implementation
 
 ``` go
 func (a Vector) Dot(b Vector) float64 {
-	return a.X*b.X + a.Y*b.Y + a.Z*b.Z
+  return a.X*b.X + a.Y*b.Y + a.Z*b.Z
 }
 
 func TestDotProductOfTwoPerpendicularVectors(t *testing.T) {
-	result := Vector{1., 0., 0.}.Dot(Vector{0., 1., 0.})
-	assert.Equal(t, 0., result, "dot product of two perpendicular vectors is 0")
+  result := Vector{1., 0., 0.}.Dot(Vector{0., 1., 0.})
+  assert.Equal(t, 0., result, "dot product of two perpendicular vectors is 0")
 }
 
 func TestDotProductOfTwoParallelVectors(t *testing.T) {
-	result := Vector{1., 0., 0.}.Dot(Vector{1., 0., 0.})
-	assert.Equal(t, 1., result, "dot product of two parallel vectors is 1")
+  result := Vector{1., 0., 0.}.Dot(Vector{1., 0., 0.})
+  assert.Equal(t, 1., result, "dot product of two parallel vectors is 1")
 }
 ```
 
@@ -176,13 +180,16 @@ So we can use the already implemented `Dot` method, to implement this one:
 
 ```go
 func (a Vector) Length() float64 {
-	return math.Sqrt(a.Dot(a))
+  return math.Sqrt(a.Dot(a))
 }
 
 func TestLength(t *testing.T) {
-	assert.Equal(t, 3., Vector{3., 0., 0.}.Length(), "calculates the length(magnitude) correctly for Vector{3., 0., 0.}")
-	assert.Equal(t, 6., Vector{6., 0., 0.}.Length(), "calculates the length(magnitude) correctly for Vector{6., 0., 0.}")
-	assert.Equal(t, 6.324555320336759, Vector{6., 2., 0.}.Length(), "calculates the length(magnitude) correctly for Vector{6., 2., 0.}")
+  assert.Equal(t, 3., Vector{3., 0., 0.}.Length(),
+    "calculates the length(magnitude) correctly for Vector{3., 0., 0.}")
+  assert.Equal(t, 6., Vector{6., 0., 0.}.Length(),
+    "calculates the length(magnitude) correctly for Vector{6., 0., 0.}")
+  assert.Equal(t, 6.324555320336759, Vector{6., 2., 0.}.Length(),
+    "calculates the length(magnitude) correctly for Vector{6., 2., 0.}")
 }
 ```
 
@@ -201,16 +208,17 @@ The implementation looks like this:
 
 ``` go
 func (a Vector) Cross(b Vector) Vector {
-	return Vector{
-		X: a.Y*b.Z - a.Z*b.Y,
-		Y: a.Z*b.X - a.X*b.Z,
-		Z: a.X*b.Y - a.Y*b.X,
-	}
+  return Vector{
+    X: a.Y*b.Z - a.Z*b.Y,
+    Y: a.Z*b.X - a.X*b.Z,
+    Z: a.X*b.Y - a.Y*b.X,
+  }
 }
 
 func TestCrossProduct(t *testing.T) {
-	result := Vector{1., 0., 0.}.Cross(Vector{0., 1., 0.})
-	assert.Equal(t, Vector{0., 0., 1.}, result, "cross product returns a vector perpendicular to the other two")
+  result := Vector{1., 0., 0.}.Cross(Vector{0., 1., 0.})
+  assert.Equal(t, Vector{0., 0., 1.}, result,
+    "cross product returns a vector perpendicular to the other two")
 }
 ```
 
@@ -223,13 +231,16 @@ All we have to do, is divide (multiply by `1 / x`) each of the vectors component
 
 ``` go
 func (a Vector) Normalize() Vector {
-	return a.MultiplyByScalar(1. / a.Length())
+  return a.MultiplyByScalar(1. / a.Length())
 }
 
 func TestNormalize(t *testing.T) {
-	assert.Equal(t, Vector{1., 0., 0.}, Vector{10., 0., 0.}.Normalize(), "returns a unit vector (versor) from the given vector")
-	assert.Equal(t, Vector{0., 1., 0.}, Vector{0., 10., 0.}.Normalize(), "returns a unit vector (versor) from the given vector")
-	assert.Equal(t, Vector{0., 0., 1.}, Vector{0., 0., 10.}.Normalize(), "returns a unit vector (versor) from the given vector")
+  assert.Equal(t, Vector{1., 0., 0.}, Vector{10., 0., 0.}.Normalize(),
+    "returns a unit vector (versor) from the given vector")
+  assert.Equal(t, Vector{0., 1., 0.}, Vector{0., 10., 0.}.Normalize(),
+    "returns a unit vector (versor) from the given vector")
+  assert.Equal(t, Vector{0., 0., 1.}, Vector{0., 0., 10.}.Normalize(),
+    "returns a unit vector (versor) from the given vector")
 }
 ```
 
