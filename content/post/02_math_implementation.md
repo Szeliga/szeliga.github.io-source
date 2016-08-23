@@ -15,6 +15,8 @@ Vectors are the core mathematical tool hiding inside the ray tracing algorithm. 
 
 In this blog post I will describe all of the needed vector operations that will be used in GoRay.
 
+You can view the full code for this post [here][1]
+
 ## Vector representation in Go
 
 First thing I need to do, is define how vectors will be represented in the code. I'm coming from a highly object oriented language (ruby), so naturally I picked a thing that ressembles objects the most - `struct` (this may not be the Go way, so if You have any other propositions, please ping me).
@@ -247,3 +249,5 @@ func TestNormalize(t *testing.T) {
 ## Summary
 
 Now that we have the basic math implemented, we will move to the more exciting stuff. Stay tuned.
+
+[1]: https://github.com/Szeliga/goray/tree/02-vector-operations
