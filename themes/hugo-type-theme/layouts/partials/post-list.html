@@ -1,31 +1,14 @@
 <div class="posts">
-  {{ $ordered := where .Data.Pages.ByDate.Reverse "Type" "post" }}
-	{{ $paginator := .Paginate (where $ordered "Draft" false) }}
-	{{ range $paginator.Pages }}
-	<div class="post-teaser">
-		<header>
-			<h2>
-  			<a class="post-link" href="{{ .Permalink }}">
-  				{{ .Title }}
-  			</a>
-      </h2>
-			<p class="meta">
-				{{ .Date.Format "January 1, 2006" }}
-        &middot; {{ .ReadingTime }} {{ .Site.Data.l10n.readingTime }}
-        &middot; {{ range .Params.categories }} {{ . }} {{ end }}
-			</p>
-		</header>
-		<div class="excerpt">
-			{{ if isset .Params "description" | and (ne .Params.description "") }}
-				{{ .Description | markdownify }}
-			{{ else }}
-				{{ .Summary }}
-			{{ end  }}
-			<br>
-			<a class="button" href="{{ .Permalink }}">
-				{{ .Site.Data.l10n.continueReading }}
-			</a>
-		</div>
-	</div>
-	{{ end }}
+  {{ if getenv "LIST_DRAFTS" }}
+    {{ $paginator := .Paginate (where .Data.Pages.ByDate.Reverse "Type" "post") }}
+    {{ range $paginator.Pages }}
+      {{ .Render "list_item" }}
+    {{ end }}
+  {{ else }}
+    {{ $ordered := where .Data.Pages.ByDate.Reverse "Type" "post" }}
+  	{{ $paginator := .Paginate (where $ordered "Draft" false) }}
+    {{ range $paginator.Pages }}
+      {{ .Render "list_item" }}
+    {{ end }}
+  {{ end}}
 </div>

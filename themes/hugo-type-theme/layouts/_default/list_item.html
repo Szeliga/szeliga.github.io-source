@@ -1,0 +1,25 @@
+<div class="post-teaser">
+  <header>
+    <h2>
+      <a class="post-link" href="{{ .Permalink }}">
+        {{ .Title }}
+      </a>
+    </h2>
+    <p class="meta">
+      {{ .Date.Format "January 1, 2006" }}
+      &middot; {{ .ReadingTime }} {{ .Site.Data.l10n.readingTime }}
+      &middot; {{ range .Params.categories }} {{ . }} {{ end }}
+    </p>
+  </header>
+  <div class="excerpt">
+    {{ if isset .Params "description" | and (ne .Params.description "") }}
+      {{ .Description | markdownify }}
+    {{ else }}
+      {{ .Summary }}
+    {{ end  }}
+    <br>
+    <a class="button" href="{{ .Permalink }}">
+      {{ .Site.Data.l10n.continueReading }}
+    </a>
+  </div>
+</div>

@@ -1,2 +1,2 @@
 #!/bin/bash
-hugo server -w --buildDrafts
+LIST_DRAFTS=true hugo server -w --buildDrafts
