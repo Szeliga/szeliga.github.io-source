@@ -6,7 +6,6 @@ slug: creating-images
 categories:
   - golang
 type: post
-draft: true
 ---
 
 ## Foreword
