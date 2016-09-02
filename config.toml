@@ -9,7 +9,7 @@ pygmentsuseclasses = false
 pygmentsstyle = "autumn"
 pygmentslinenos = "inline"
 PygmentsCodeFences= true
-disqusShortname = "goray-devblog"
+disqusShortname = "after-eight-coding"
 googleAnalytics = "UA-57222446-2"
 
 [taxonomies]
