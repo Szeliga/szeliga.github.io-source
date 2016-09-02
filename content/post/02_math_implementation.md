@@ -201,7 +201,7 @@ Unlike the dot product, the cross product returns a new vector, that is perpendi
 Additionally this operation is defined in __R<sup>3</sup>__.
 
 The cross product can be also used for calculating a surface normal (the surface that is defined by the two vectors).
-{{% center-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cross_product_parallelogram.svg/440px-Cross_product_parallelogram.svg.png" alt="Cross product" %}}
+{{% center-img src="/img/02-vector-operations/cross_product.png" alt="Cross product" %}}
 
 The cross product formula is somewhat hard to remember:
 {{% center-img src="/img/equations/cross_product.svg" alt="Cross product formula" %}}
