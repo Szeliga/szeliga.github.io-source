@@ -5,6 +5,7 @@ description: A quick crash course about creating and saving PNG images in Go
 slug: creating-images
 categories:
   - golang
+  - raytracer
 type: post
 ---
 
