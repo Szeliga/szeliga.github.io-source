@@ -74,7 +74,10 @@ With the technicalities out of the way, let's move on to implementing the actual
 
 ### Adding two vectors
 
-This operation is achieved by adding the corresponding coefficients of two vectors together:
+This operation is achieved by adding the corresponding coefficients of two vectors together.
+
+Geometrically it looks like this:
+{{% center-img src="/img/02-vector-operations/addition.png" alt="Geometric definition of adding two vectors" %}}
 
 ``` go
 func (a Vector) Add(b Vector) Vector {
@@ -92,6 +95,9 @@ func TestAdd(t *testing.T) {
 ```
 
 ### Subtracting two vectors
+
+Subtraction is similar to addition, with the difference that we add a negated vector:
+{{% center-img src="/img/02-vector-operations/subtraction.png" alt="Geometric definition of subtracting two vectors" %}}
 
 Analogically to addition of two vectors, we subtract the corresponding coefficients of two vectors:
 
@@ -113,6 +119,8 @@ func TestSub(t *testing.T) {
 ### Multiplying vector by scalar
 
 Multiplying by a scalar can be interpreted as scaling the vector (modifying it's length). This operation is also pretty straightforward, as we have to multiply each coefficient by the scalar:
+
+{{% center-img src="/img/02-vector-operations/scaling.png" alt="Geometric definition of scaling a vector" %}}
 
 ``` go
 func (a Vector) MultiplyByScalar(s float64) Vector {
@@ -138,17 +146,17 @@ The dot product is the first operation that doesn't return a `Vector`. It return
 This operation is particurarly important in the context of the ray tracing algorithm, because of it's common use in the equations.
 
 It's algebraic definition is the following:
-{{% center-img src="/img/equations/algebraic_dot_product.svg" alt="Dot product algebraic definition" %}}
+{{% center-img src="/img/02-vector-operations/equations/algebraic_dot_product.svg" alt="Dot product algebraic definition" %}}
 
 It's a simple equation, we multiply corresponding coefficients of both vectors, and then sum those multiplications. But this definition isn't of much use in context of the ray tracing algorithm. What we need here is the geometric definition:
-{{% center-img src="/img/equations/geometric_dot_product.svg" alt="Dot product geometric definition" %}}
+{{% center-img src="/img/02-vector-operations/equations/geometric_dot_product.svg" alt="Dot product geometric definition" %}}
 
 The notation `||A||` means length of vector A (more on that in a sec). `θ` is the angle between the vectors. The fact that we use the cosine function gives us some interesting cases:
 
 1. When the vectors are orthogonal, then the angle between them is 90°. This means that the cosine is 0 and the whole dot product is 0
 
 2. When the vectors are codirectional, then the angle between them is 0°. This means that the cosine is 1 and the dot product evaluates to:
-{{% center-img src="/img/equations/geometric_dot_product_codirectional.svg" alt="Dot product geometric definition" %}}
+{{% center-img src="/img/02-vector-operations/equations/geometric_dot_product_codirectional.svg" alt="Dot product geometric definition" %}}
 
 This two cases give us a way to determine if two rays are orthogonal or codirectional, which has a huge meaning when evaluating materials of objects.
 
@@ -175,7 +183,7 @@ Pretty simple, eh?
 ### Length of a vector
 
 As stated earlier, we denote the length of a vector A like this - `||A||`. It's algebraic definition is following:
-{{% center-img src="/img/equations/vector_length.svg" alt="Vector length algebraic definition" %}}
+{{% center-img src="/img/02-vector-operations/equations/vector_length.svg" alt="Vector length algebraic definition" %}}
 
 As you can see, it's basically a dot product of a vector with itself, under a square root.
 So we can use the already implemented `Dot` method, to implement this one:
@@ -204,7 +212,7 @@ The cross product can be also used for calculating a surface normal (the surface
 {{% center-img src="/img/02-vector-operations/cross_product.png" alt="Cross product" %}}
 
 The cross product formula is somewhat hard to remember:
-{{% center-img src="/img/equations/cross_product.svg" alt="Cross product formula" %}}
+{{% center-img src="/img/02-vector-operations/equations/cross_product.svg" alt="Cross product formula" %}}
 
 The implementation looks like this:
 
@@ -227,7 +235,7 @@ func TestCrossProduct(t *testing.T) {
 ### Normalizing a vector
 
 Also called calculating a unit vector - versor:
-{{% center-img src="/img/equations/vector_normalization.svg" alt="Vector normalization formula" %}}
+{{% center-img src="/img/02-vector-operations/equations/vector_normalization.svg" alt="Vector normalization formula" %}}
 
 All we have to do, is divide (multiply by `1 / x`) each of the vectors components by the length of the vector:
 
