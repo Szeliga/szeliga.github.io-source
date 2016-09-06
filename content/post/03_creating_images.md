@@ -137,6 +137,40 @@ Several interesting things happen in this code:
 * `defer f.Close()` &mdash; the [`defer` keyword][5] delays execution of the passed code until the surrounding function returns; in this case, the file won't close until the `Save` function finishes executing it's commands
 * `assert.Panics` &mdash; another nice feature of the `assert` library, instead of taking expected/actual values of the assertion, it takes a function that is supposed to `panic` (raise an exception), if the function does `panic` it passes the test; this is similar to RSpec's `expect { subject }.to raise_error StandardError`
 
+### Putting it all together
+
+Here's a simple main function that fills the image with values based on the current pixel:
+
+``` go
+package main
+
+import (
+	"fmt"
+	"image/color"
+	"time"
+
+	"github.com/szeliga/goray/engine"
+)
+
+func main() {
+	var width = 200
+	var height = 200
+	scene := engine.NewScene(width, height)
+	scene.EachPixel(func(x, y int) color.RGBA {
+		return color.RGBA{
+			uint8(x * 255 / width),
+			uint8(y * 255 / height),
+			100,
+			255,
+		}
+	})
+	scene.Save(fmt.Sprintf("./renders/%d.png", time.Now().Unix()))
+}
+```
+
+This code produces the following image:
+{{% center-img src="/img/03-creating-images/image.png" alt="Produced image" %}}
+
 That's all regarding creating and saving images in Go. Next up, a basic camera model, stay tuned.
 
 [1]: https://github.com/Szeliga/goray/tree/03-creating-images
