@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-Frame-Options" content="sameorigin">
   <meta name="google-site-verification" content="U1ky_ZA2WI301xUfkjD8a7anISszyvMOHFtQNduC0qY" />
+  <link rel="canonical" href="{{ .Permalink }}">
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ .Hugo.Generator }}

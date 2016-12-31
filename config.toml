@@ -1,4 +1,4 @@
-baseurl = "https://szeliga.github.io/"
+baseurl = "https://szeliga.co/"
 languageCode = "en-us"
 title = "After Eight Coding"
 description = "A journal about writing a ray tracer in Go"

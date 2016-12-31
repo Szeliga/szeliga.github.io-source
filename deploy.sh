@@ -12,7 +12,7 @@ cd dist
 git add -A
 
 # Commit changes.
-msg="rebuilding site `date '+%Y-%m-%d %H:%M:%S'`"
+msg="Rebuilding site `date '+%Y-%m-%d %H:%M:%S'`"
 if [ $# -eq 1 ]
   then msg="$1"
 fi
