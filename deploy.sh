@@ -4,7 +4,7 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 git push origin master
 # Build the project.
-hugo --buildDrafts -d dist # if using a theme, replace by `hugo -t <yourtheme>`
+hugo --ignoreCache -d dist # if using a theme, replace by `hugo -t <yourtheme>`
 
 # Go To Public folder
 cd dist
