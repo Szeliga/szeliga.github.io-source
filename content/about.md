@@ -8,8 +8,9 @@ keywords:
   - rails
   - golang
   - Szymon Szeliga
-title: "About"
+title: "About me"
 menu: "nav"
 ---
+
 My name is Szymon Szeliga, I work as a Developer at SchoolKeep.
 This blog will contain posts about everything webdev-related, from Ruby and Rails, through databases (Postgres mostly), to exploring new languages and frameworks.
