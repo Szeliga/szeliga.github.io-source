@@ -1,12 +1,11 @@
 ---
 date: "2016-04-20T21:16:55+02:00"
-description: "About GoRay and it's Author"
+description: "About After Eight Coding"
 keywords:
   - about
   - development
   - ruby
   - rails
-  - go
   - golang
   - Szymon Szeliga
 title: "About"
