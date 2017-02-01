@@ -1,7 +1,7 @@
 baseurl = "https://szeliga.co/"
 languageCode = "en-us"
 title = "After Eight Coding"
-description = "A journal about writing a ray tracer in Go"
+description = "A developer's blog about Ruby and Go"
 theme = "hugo-type-theme"
 paginate = 10
 PaginatePath = "/"
@@ -20,9 +20,9 @@ category = "categories"
 
 [params]
   author = "Szymon Szeliga"
-	name = "GoRay devblog"
-  gravatar = "szeliga.szymon@gmail.com"
-	description = "A development journal about writting a ray tracer in Go"
+	name = "After Eight Coding"
+  gravatar = "szymon@szeliga.co"
+	description = "A developer's blog about Ruby and Go"
 	copyright = "by Szymon Szeliga - Powered by [Hugo](//gohugo.io) - Theme: [Type](//github.com/digitalcraftsman/hugo-type-theme)"
   pageNotFoundTitle = "Page not found"
 	pageNotFoundSubtitle = "Sorry, but the requested page wasn’t <br> found on the server."
@@ -36,6 +36,6 @@ category = "categories"
 	# Insert your accout name and the icon will be shown in the right menu
 	rss = true
 	homepage = true
-	email = "szeliga.szymon@gmail.com"
+	email = "szymon@szeliga.co"
 	github = "Szeliga"
 	linkedin = "https://www.linkedin.com/in/szymonszeliga"
